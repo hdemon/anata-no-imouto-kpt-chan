@@ -1,0 +1,2 @@
+exports.awesome = ->
+  "awesome"
