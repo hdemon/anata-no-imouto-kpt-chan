@@ -17,12 +17,12 @@ class MessageParser
     promises = []
 
     promises.push new RSVP.Promise (resolve, reject) =>
-      @_parse msg, (result) =>
+      @_parse msg, (err, result) =>
         category = @_getCategory result
         resolve()
 
     promises.push new RSVP.Promise (resolve, reject) =>
-      @_parse msg, (result) =>
+      @_parse msg, (err, result) =>
         query = @_getQuery result
         resolve()
 
@@ -39,8 +39,7 @@ class MessageParser
 
   _parse: (msg, callback) ->
     mecab.parse msg, (err, result) ->
-      throw err if err
-      callback result
+      callback err, result
 
   _getCategory: (msg) ->
     category = ''
