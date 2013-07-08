@@ -67,6 +67,22 @@ class Behavior.Add extends Behavior.Base
         callback err, id
 
 
+class Behavior.List extends Behavior.Base
+  _behave: (order, callback) =>
+    Article[order.category]
+      .find
+        category: order.category
+        isUnresolved: true
+      , (err, docs) =>
+        for doc in docs
+          @setResponse(@_deserialize doc)
+          callback err, @response
+
+  _deserialize: (doc) ->
+    dateTime = moment(doc.date).local().format("YY-MM-DD HH:mm")
+    "#{doc.category}(#{doc.incrementalId})  #{doc.body} (#{dateTime} #{doc.speaker})"
+
+
 class Behavior.Urge extends Behavior.Base
 
 
