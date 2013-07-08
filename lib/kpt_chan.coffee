@@ -10,6 +10,7 @@ class KPTChan
       console.log order
       behavior = switch order.query
         when 'add' then new Behavior.Add order
+        when 'remove' then new Behavior.Remove order
         when 'list' then new Behavior.List order
         else new Behavior.Add order
         # TODO: urgeを実装する。
