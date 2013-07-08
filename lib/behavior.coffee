@@ -28,9 +28,20 @@ class Behavior.Base
     @article = new Article[order.category]
 
   behave: (order, callback) ->
-    @_behaveNow order, callback
+    # isEmptyは、Date型のオブジェクトを与えるとtrueを返すため、isNullを使用。
+    if _.isNull order.dateTime
+      @_behaveNow order, callback
+    else
+      @_behaveAt order.dateTime, order, callback
 
   _behaveNow: (order, callback) ->
+    @_behave order, callback
+
+  _behaveAt: (dateTime, order, callback) ->
+    schedule = require('node-schedule');
+    j = schedule.scheduleJob dateTime, ->
+      console.log('The world is going to end today.');
+
     @_behave order, callback
 
   getResponse: -> @response
@@ -100,6 +111,9 @@ class Behavior.Remove extends Behavior.Base
 
   # TODO: 実装しろ
   _removeAll: (order, callback) ->
+
+
+class Behavior.Urge extends Behavior.Base
 
 
 module.exports = Behavior
