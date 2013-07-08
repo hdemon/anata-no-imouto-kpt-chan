@@ -2,8 +2,8 @@
 
 # Set Environment Variables
 export HUBOT_IRC_NICK=kpt-chan
-export HUBOT_IRC_SERVER=irc.aiming-inc.biz
-export HUBOT_IRC_ROOMS="#hdemon"
+export HUBOT_IRC_SERVER=
+export HUBOT_IRC_ROOMS=""
 
 # Using SSL?
 export HUBOT_IRC_PORT=6697
@@ -11,7 +11,7 @@ export HUBOT_IRC_USESSL=true
 #export HUBOT_IRC_SERVER_FAKE_SSL=true
 
 # Server password?
-export HUBOT_IRC_PASSWORD=aim1600023
+export HUBOT_IRC_PASSWORD=
 
 # Don't let hubot flood the room.
 export HUBOT_IRC_UNFLOOD=true
