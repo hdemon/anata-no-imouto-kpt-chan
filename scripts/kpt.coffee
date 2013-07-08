@@ -1,6 +1,7 @@
-KPTChan = require '../lib/kpt_chan'
-bot = new KPTChan()
+kptChan = new (require '../lib/kpt_chan')
+
 
 module.exports = (robot) ->
-  robot.respond /.+/i, (msg) ->
-    bot.behave(msg)
+  robot.respond /.+/i, (receivedMsg) ->
+    kptChan.response receivedMsg, (text) ->
+      receivedMsg.send text
