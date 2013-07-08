@@ -83,7 +83,23 @@ class Behavior.List extends Behavior.Base
     "#{doc.category}(#{doc.incrementalId})  #{doc.body} (#{dateTime} #{doc.speaker})"
 
 
-class Behavior.Urge extends Behavior.Base
+class Behavior.Remove extends Behavior.Base
+  _behave: (order, callback) =>
+    @_remove order, callback
+
+  _remove: (order, callback) ->
+    Article[order.category]
+      .update
+        incrementalId: order.incrementalId
+        isUnresolved: true
+      ,
+        isUnresolved: false
+      , (err, docs) =>
+        @setResponse "#{order.incrementalId}を消しました。"
+        callback err, @response
+
+  # TODO: 実装しろ
+  _removeAll: (order, callback) ->
 
 
 module.exports = Behavior
